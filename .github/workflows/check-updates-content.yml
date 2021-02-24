@@ -1,0 +1,22 @@
+name: check content updates
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    paths:
+      - 'modules/ROOT/**'
+jobs:
+  checkUpdates:
+    runs-on: ubuntu-20.04
+    env:
+      COMPONENT_NAME: bonita
+      # Except if you want to test in progress work that your content depends on, keep it set to master
+      DOC_SITE_BRANCH: master
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+    steps:
+      - id: files
+        uses: jitterbit/get-changed-files@v1
+      - run: |
+          for changed_file in ${{ steps.files.outputs.all }}; do
+               echo "Do something with this ${changed_file}."
+          done
