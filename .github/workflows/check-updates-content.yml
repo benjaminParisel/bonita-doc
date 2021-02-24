@@ -17,7 +17,8 @@ jobs:
       - id: files
         uses: jitterbit/get-changed-files@v1
       - run: |
+          ls $GITHUB_WORKSPACE
           for changed_file in ${{ steps.files.outputs.all }}; do
                echo "Do something with this ${changed_file}."
-               cat ${changed_file}
+               cat $GITHUB_WORKSPACE/${changed_file}
           done
