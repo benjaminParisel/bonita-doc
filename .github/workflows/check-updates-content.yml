@@ -19,5 +19,5 @@ jobs:
       - run: |
           for changed_file in ${{ steps.files.outputs.all }}; do
                echo "Do something with this ${changed_file}."
-               cat ${{GITHUB_WORKSPACE}}/${changed_file}
+               cat $GITHUB_WORKSPACE/${changed_file}
           done
